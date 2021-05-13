@@ -1,17 +1,37 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import "semantic-ui-css/semantic.min.css";
+import React from "react";
+import ReactDOM from "react-dom";
+import Loading from "./Loading";
+import Error from "./Error";
+import SeasonDisplay from "./SeasonDisplay";
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+class App extends React.Component {
+  state = { lat: null, errorMessage: "" };
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  // componentDidMount it's used just one time along the code, a good place to data loading!
+  componentDidMount() {
+    window.navigator.geolocation.getCurrentPosition(
+      (position) =>
+        //calling setState
+        this.setState({ lat: position.coords.latitude }),
+      (err) => this.setState({ errorMessage: err.message })
+    );
+  }
+
+  render() {
+    if (this.state.errorMessage && !this.state.lat) {
+      return (
+        <Error message="Oops! something went wrong, try again.">
+          {this.state.errorMessage}
+        </Error>
+      );
+    }
+    /* passing the state lat as a props to my component of SeasonDisplay*/
+    if (!this.state.errorMessage && this.state.lat) {
+      return <SeasonDisplay lat={this.state.lat} />;
+    }
+    return <Loading message="Please accept location request." />;
+  }
+}
+
+ReactDOM.render(<App />, document.querySelector("#root"));
