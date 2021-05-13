@@ -11,11 +11,11 @@
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
     "semantic-ui-css": "^2.4.1",
+    "styled-components": "^5.3.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build",
     "deploy": "gh-pages -b master -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -40,5 +40,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://laurasansil.github.io/seasonsapp.github.io/"
+  "homepage": "https://laurasansil.github.io/seasonsapp/"
 }

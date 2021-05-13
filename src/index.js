@@ -38,7 +38,7 @@ class App extends React.Component {
 
   //always return JSX:
   render() {
-    return <div className="wrap all my components">{this.renderContent()}</div>;
+    return <div className="main">{this.renderContent()}</div>;
   }
 }
 

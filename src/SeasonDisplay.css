@@ -28,7 +28,7 @@ height: 100vh;
 
 
 .winter{
-    background-image: linear-gradient(150deg ,rgb(1, 113, 165), rgb(63, 201, 255), white);
+    background-image: linear-gradient(150deg ,rgb(1, 113, 165), rgb(63, 201, 255), rgb(159, 241, 241));
     color: white
 }
 
