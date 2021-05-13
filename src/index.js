@@ -5,12 +5,15 @@ import Loading from "./Loading";
 import Error from "./Error";
 import SeasonDisplay from "./SeasonDisplay";
 
+//Class are better to organize, we can use lifecycle methods
 class App extends React.Component {
+  // we can inicialize the state like this, don't need always a constructor
   state = { lat: null, errorMessage: "" };
 
   // componentDidMount it's used just one time along the code, a good place to data loading!
   componentDidMount() {
     window.navigator.geolocation.getCurrentPosition(
+      //this is a callback c:
       (position) =>
         //calling setState
         this.setState({ lat: position.coords.latitude }),
@@ -18,7 +21,7 @@ class App extends React.Component {
     );
   }
 
-  render() {
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return (
         <Error message="Oops! something went wrong, try again.">
@@ -31,6 +34,11 @@ class App extends React.Component {
       return <SeasonDisplay lat={this.state.lat} />;
     }
     return <Loading message="Please accept location request." />;
+  }
+
+  //always return JSX:
+  render() {
+    return <div className="wrap all my components">{this.renderContent()}</div>;
   }
 }
 

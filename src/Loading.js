@@ -3,7 +3,7 @@ import React from "react";
 const Loading = (props) => {
   return (
     <div className="ui active dimmer">
-      <div className="ui medium text loader">{props.message}</div>
+      <div className="ui large text loader">{props.message}</div>
     </div>
   );
 };
